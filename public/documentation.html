@@ -6,10 +6,177 @@
 </head>
 
 <body>
-    <h1>Documentation</h1>
+    <h1>My Movie API Documentation</h1>
     <p>The web application will provide users with access to information about different
         movies, directors, and genres. Users will be able to sign up, update their
         personal information, and create a list of their favorite movies</p>
+    <table>
+        <tr>
+            <th>Business Logic</th>
+            <th>URL</th>
+            <th>HTTP Method</th>
+            <th>Request Body</th>
+            <th>Response Body</th>
+        </tr>
+        <tr>
+            <td>Get the list of all the movie data</td>
+            <td>/movies</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about all the movies</td>
+        </tr>
+        <tr>
+            <td>Get the data of a genre by name</td>
+            <td>/movies/genres/[Name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about the requested genre, structure as:
+                <span>
+                    {
+                    "name": "horror",
+                    "description": "Horror is a genre of speculative fiction which is intended to frighten, scare, or
+                    disgust."
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Get the data of a director by name</td>
+            <td>/movies/directors/[Name]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about the requested director, structure as:
+                <span>
+                    {
+                    "name": "Hayao Miyazaki"
+                    "bio": "Hayao Miyazaki is a Japanese animator, director, producer, screenwriter, author, and manga
+                    artist. A co-founder of Studio Ghibli."
+                    "birth-year": 1963
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Get the data of one single movie by its title</td>
+            <td>/movies/[Title]</td>
+            <td>GET</td>
+            <td>None</td>
+            <td>A JSON object holding data about a single movie, including title, director, description, genre and image
+                URL, structure as:
+                <span>
+                    {
+                    "title":"La Strada",
+                    "director":{
+                    "name":"Federico Fellini",
+                    "bio":"Federico Fellini, Cavaliere di Gran Croce OMRI was an Italian film director and screenwriter
+                    known for his distinctive style, which blends fantasy and baroque images with earthiness."
+                    "birth-year":1920},
+                    "description":"When Gelsomina (Giulietta Masina), a naïve young woman, is purchased from her
+                    impoverished mother by brutish circus strongman Zampanò (Anthony Quinn) to be his wife and partner,
+                    she loyally endures her husband"s coldness and abuse as they travel the Italian countryside
+                    performing together. Soon Zampanò must deal with his jealousy and conflicted feelings about
+                    Gelsomina when she finds a kindred spirit in Il Matto (Richard Basehart), the carefree circus fool,
+                    and contemplates leaving Zampanò.",
+                    "genre":{
+                    "name":"drama",
+                    description:"In film and television, drama is a category or genre of narrative fiction (or
+                    semi-fiction) intended to be more serious than humorous in tone."},
+                    "imageURL":"https://en.wikipedia.org/wiki/File:La_Strada.jpg"
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Register a new user</td>
+            <td>/users</td>
+            <td>POST</td>
+            <td>A JSON object holding data about the new user, structure as:
+                <span>
+                    {
+                    "id":1,
+                    "name":"Daniel",
+                    "favMovies":["Babel","Undine"]
+                    }
+                </span>
+            </td>
+            <td>A JSON object holding data about the new user, sturcture as:
+                <span>
+                    {
+                    "id":1,
+                    "name":"Daniel",
+                    "favMovies":["Babel","Undine"]
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Deregister a user</td>
+            <td>/users/[ID]</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A message indicating that the user has deregistered</td>
+        </tr>
+        <tr>
+            <td>Update a user's name</td>
+            <td>/users/[ID]</td>
+            <td>PUT</td>
+            <td>A JSON object holding data about the updated user, structure as:
+                <span>
+                    {
+                    "id":1,
+                    "name":"Daniel.A",
+                    "favMovies":["Babel","Undine"]
+                    }
+                </span>
+            </td>
+            <td>A JSON object holding data about the updated user, sturcture as:
+                <span>
+                    {
+                    "id":1,
+                    "name":"Daniel.A",
+                    "favMovies":["Babel","Undine"]
+                    }
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>Add a movie to the list of favorites</td>
+            <td>/users/[ID]/[MovieTitle]</td>
+            <td>POST</td>
+            <td>A JSON object holding data about movie to add, structure as:
+                <span>
+                    {
+                    "title":"La Strada",
+                    "director":{
+                    "name":"Federico Fellini",
+                    "bio":"Federico Fellini, Cavaliere di Gran Croce OMRI was an Italian film director and screenwriter
+                    known for his distinctive style, which blends fantasy and baroque images with earthiness."
+                    "birth-year":1920},
+                    "description":"When Gelsomina (Giulietta Masina), a naïve young woman, is purchased from her
+                    impoverished mother by brutish circus strongman Zampanò (Anthony Quinn) to be his wife and partner,
+                    she loyally endures her husband"s coldness and abuse as they travel the Italian countryside
+                    performing together. Soon Zampanò must deal with his jealousy and conflicted feelings about
+                    Gelsomina when she finds a kindred spirit in Il Matto (Richard Basehart), the carefree circus fool,
+                    and contemplates leaving Zampanò.",
+                    "genre":{
+                    "name":"drama",
+                    description:"In film and television, drama is a category or genre of narrative fiction (or
+                    semi-fiction) intended to be more serious than humorous in tone."},
+                    "imageURL":"https://en.wikipedia.org/wiki/File:La_Strada.jpg"
+                    }
+                </span>
+            </td>
+            <td>A message indicating that the movie has been added</td>
+        </tr>
+        <tr>
+            <td>Remove a movie from the list of favorites by title</td>
+            <td>/users/[ID]/[MovieTitle]</td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>A message indicating that the movie was deleted</td>
+        </tr>
+    </table>
+
 </body>
 
 </html>
