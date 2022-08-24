@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const mongoose = require('mongoose');
-const Models = require('./models.js');
+const Models = require('models.js');
 mongoose.connect('mongodb://localhost:27017/movie_api');
 
 
@@ -150,6 +150,7 @@ app.get("/movies", (req, res) => {
         });
 });
 
+// ==================to be fixed
 app.get('/movies/:title', (req, res) => {
     Movies.findOne({ Title: req.params.Title })
         .then((movie) => {
@@ -183,6 +184,7 @@ app.get("/movies/directors/:directorName", (req, res) => {
             res.status(500).send('Error: ' + err);
         });
 })
+// to be fixed==================
 
 // UPDATE
 app.put('/users/:Username', (req, res) => {
@@ -208,7 +210,7 @@ app.put('/users/:Username', (req, res) => {
 
 
 // DELETE
-app.delete("/users/:id/:movieTitle", (req, res) => {
+app.delete("/users/:Username/:movieTitle", (req, res) => {
     Users.findOneAndUpdate(
         { Username: req.params.Username },
         {
