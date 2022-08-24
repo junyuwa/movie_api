@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const mongoose = require('mongoose');
-const Models = require('models.js');
+const Models = require('./models.js');
 mongoose.connect('mongodb://localhost:27017/movie_api');
 
 
@@ -125,9 +125,9 @@ app.post("/users", (req, res) => {
         });
 });
 
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+app.post('/users/:Username/movies/:movieTitle', (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
-        $push: { Favmovies: req.params.MovieID }
+        $push: { Favmovies: req.params.movieTitle }
     },
         { new: true }, // This line makes sure that the updated document is returned
         (err, updatedUser) => {
@@ -150,9 +150,9 @@ app.get("/movies", (req, res) => {
         });
 });
 
-// ==================to be fixed
-app.get('/movies/:title', (req, res) => {
-    Movies.findOne({ Title: req.params.Title })
+
+app.get('/movies/:movieTitle', (req, res) => {
+    Movies.findOne({ Title: req.params.movieTitle })
         .then((movie) => {
             res.json(movie);
         })
@@ -164,7 +164,7 @@ app.get('/movies/:title', (req, res) => {
 
 
 app.get("/movies/genres/:genreName", (req, res) => {
-    Movies.findOne({ "Genre.Name": req.params.Name })
+    Movies.findOne({ "Genre.Name": req.params.genreName })
         .then((movie) => {
             res.json(movie.Genre);
         })
@@ -175,7 +175,7 @@ app.get("/movies/genres/:genreName", (req, res) => {
 })
 
 app.get("/movies/directors/:directorName", (req, res) => {
-    Movies.findOne({ "Director.Name": req.params.Name })
+    Movies.findOne({ "Director.Name": req.params.directorName })
         .then((movie) => {
             res.json(movie.Director);
         })
@@ -184,7 +184,7 @@ app.get("/movies/directors/:directorName", (req, res) => {
             res.status(500).send('Error: ' + err);
         });
 })
-// to be fixed==================
+
 
 // UPDATE
 app.put('/users/:Username', (req, res) => {
@@ -210,11 +210,11 @@ app.put('/users/:Username', (req, res) => {
 
 
 // DELETE
-app.delete("/users/:Username/:movieTitle", (req, res) => {
+app.delete("/users/:Username/:movieID", (req, res) => {
     Users.findOneAndUpdate(
         { Username: req.params.Username },
         {
-            $pull: { Favmovies: req.params.MovieID }
+            $pull: { Favmovies: req.params.movieID }
         },
         { new: true }, // This line makes sure that the updated document is returned
 
