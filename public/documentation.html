@@ -111,14 +111,14 @@
         </tr>
         <tr>
             <td>Deregister a user</td>
-            <td>/users/[ID]</td>
+            <td>/users/[Username]</td>
             <td>DELETE</td>
             <td>None</td>
             <td>A message indicating that the user has deregistered</td>
         </tr>
         <tr>
             <td>Update a user's name</td>
-            <td>/users/[ID]</td>
+            <td>/users/[Username]</td>
             <td>PUT</td>
             <td>A JSON object holding data about the updated user, structure as:
                 <span>
@@ -141,7 +141,7 @@
         </tr>
         <tr>
             <td>Add a movie to the list of favorites</td>
-            <td>/users/[ID]/[MovieTitle]</td>
+            <td>/users/[Username]/movies/[MovieID]</td>
             <td>POST</td>
             <td>A JSON object holding data about movie to add, structure as:
                 <span>
