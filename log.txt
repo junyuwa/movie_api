@@ -75,3 +75,6 @@ Timestamp: Mon Aug 08 2022 22:49:39 GMT-0700 (Pacific Daylight Time)
 ::1 - - [25/Aug/2022:02:50:03 +0000] "DELETE /users/mightyhamster/62ff1c8d3ae0ab84a04691d4 HTTP/1.1" 200 160 "-" "PostmanRuntime/7.29.2"
 ::1 - - [25/Aug/2022:02:52:37 +0000] "DELETE /users/mightyhamster/62ff1c8d3ae0ab84a04691d4 HTTP/1.1" 200 228 "-" "PostmanRuntime/7.29.2"
 ::1 - - [25/Aug/2022:02:53:36 +0000] "DELETE /users/mightyhamster/62ff1c8d3ae0ab84a04691d4 HTTP/1.1" 200 175 "-" "PostmanRuntime/7.29.2"
+::1 - - [01/Sep/2022:07:21:01 +0000] "GET /movies HTTP/1.1" 401 - "-" "PostmanRuntime/7.29.2"
+::1 - - [01/Sep/2022:07:24:12 +0000] "POST /users HTTP/1.1" 201 183 "-" "PostmanRuntime/7.29.2"
+::1 - - [01/Sep/2022:07:28:00 +0000] "GET /movies HTTP/1.1" 201 9010 "-" "PostmanRuntime/7.29.2"
