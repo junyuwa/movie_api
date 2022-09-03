@@ -8,7 +8,8 @@ const path = require("path");
 
 const mongoose = require('mongoose');
 const Models = require('./models.js');
-mongoose.connect('mongodb://localhost:27017/movie_api');
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/movie_api');
 
 
 const Movies = Models.Movie;
