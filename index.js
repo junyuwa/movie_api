@@ -24,7 +24,6 @@ app.use(cors());
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
-const bcrypt = require('bcrypt');
 const { check, validationResult } = require('express-validator');
 
 // let users = [
