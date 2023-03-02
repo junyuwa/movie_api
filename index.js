@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-const uuid = require("uuid");
+const bcrypt = require('bcrypt');
 const fs = require("fs");
 const path = require("path");
 
@@ -162,6 +162,26 @@ app.post('/users/:Username/movies/:movieID', passport.authenticate('jwt', { sess
                 res.json(updatedUser);
             }
         });
+});
+
+// user login
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+        return res.status(404).send('User not found');
+    }
+    // Compare the password with the hashed password in the database
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatch) {
+        // Passwords do not match
+        return res.status(401).send('Incorrect password');
+    }
+
+    // Generate a JWT token and send it in the response
+    const token = jwt.sign({ userId: user._id }, 'my-secret-key');
+    res.status(200).json({ token, user });
 });
 
 
